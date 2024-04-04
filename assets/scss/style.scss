@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+$black: #020307;
+$lightBlue: #1ABCFE;
+$troyRed: #73002E;
+
+// Define a mixin for media queries
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == small {
+        @media (max-width: 576px) {
+            @content;
+        }
+    }
+    @else if $breakpoint == medium {
+        @media (min-width: 577px) and (max-width: 768px) {
+            @content;
+        }
+    }
+    @else if $breakpoint == large {
+        @media (min-width: 769px) {
+            @content;
+        }
+    }
+}
+
+h1,h2,h3,h4,h5{
+    font-family: 'Merriweather';
+}
+p{
+    font-family: 'Lato';
+}
+.no-scroll{
+    overflow: hidden;
+}
+.highlight{
+    color: $lightBlue;
+}
+.light-txt{
+    font-weight: 300;
+}
+.white-text{
+    color: white;
+}
+.white-icon{
+    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+}
+.title-text{
+    text-align: center;
+    font-size: 28px;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    margin: 0px;
+}
+// Define the function to darken the color
+@function darken-by-step($color, $step) {
+    @return darken($color, $step * 5%);
+}
+
+// Loop through the number of steps and generate styles for each .project
+$steps: 9;
+@for $i from 1 through $steps {
+    .project:nth-of-type(#{$i}) {
+        background-color: darken-by-step($lightBlue, $i);
+    }
+}
+
+body{
+    margin: 0px;
+    .container{
+        display: block;
+        padding: 0 12%;
+    }
+    .black-bg{
+        background: $black;
+        margin: 0px;
+        padding: 20px 4%;
+        header{
+            #hamburger{
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                width: 20px;
+                height: 20px;
+                filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+                cursor: pointer;
+            }
+            .hidden{
+                display:none;
+                animation: slideout .1s ease forwards;
+            }
+            #nav{
+                background-color: $lightBlue;
+                min-height: 100vh;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                animation: slidein .5s ease forwards;
+                @media screen and (max-width: 576px) {
+                    animation: slideinmobile 1s ease forwards;
+                    z-index: 9;
+                }
+                .close-btn{
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                }
+                .nav-wrap{  
+                    min-height: 100vh;  
+                    margin: 100px 50px;
+                    display: block;
+                    height: 100vh;
+                    .nav-link{
+                        color: white;
+                        font-size: 34px;
+                        margin-bottom: 30px;
+                        text-align: left;
+                        cursor: pointer;
+                        width: 100%;
+                        display: block;
+                        animation: fadein 1.5s ease forwards;
+                        text-decoration: none;
+                        &:hover{
+                            color: $black;
+                        }
+                    }
+                    .resume-download{
+                        font-size: 30px;
+                        margin: 0;
+                        height: auto;
+                        width: auto;
+                        color: $black;
+                        &:hover{
+                            color: white;
+                        }
+                    }
+                }
+            }
+            .social-wrap{
+                display: flex;
+                justify-content: flex-end;
+                column-gap: 10px;
+                .social-icon{
+                    width: 20px;
+                    height: 20px;
+                    filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+                    cursor: pointer;
+                }
+            }
+        }
+        .title{ 
+            color: white;
+            text-align: center;
+            line-height: 22px;
+            .profile-wrap{
+                .profile-circle{
+                    width: 175px;
+                    transition: transform 1s ease;
+                    &:hover{
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+            .down-arrow{
+                width: 15px;
+                margin-top: 20px;
+            }
+        }
+        #about{
+            h1{
+                color: white;
+                text-align: center;
+                font-size: 26px;
+                margin-top: 50px;
+                span{
+                    color: $lightBlue;
+                }
+            }
+        }
+        #awards{
+            padding-bottom: 30px;
+            .three-col{
+                display: flex;
+                justify-content: space-between;
+                color: #E07A1C;
+                font-size: 12px;
+                gap: 20px;
+                @media screen and (max-width: 576px) {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .award{
+                    flex: 1;
+                    text-align: center;
+                    background: white;
+                    border: 3px solid $lightBlue;
+                    width: auto;
+                    padding: 10px 0px;
+                    border-radius: 15px;
+                    @media screen and (max-width: 576px) {
+                        flex: none;
+                    }
+                    img{
+                        width: 75%;
+                    }
+                }
+            }
+        }
+    }
+    #troy{
+        background: $troyRed;
+        text-align: center;
+        padding-bottom: 50px;
+        color: white;
+    }
+    #skills{
+        border-top: 3px solid $lightBlue;
+        border-bottom: 3px solid $lightBlue;
+        padding-bottom: 30px;
+        .skills-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: center;
+            align-items: flex-end;
+            justify-content: center;
+            .skill{
+                flex: 1;
+            }
+        }
+    }
+    #experience{
+        display: flex;
+        flex-wrap: no-wrap;
+        position: relative;
+        min-height: 100%;
+        border-bottom: 3px solid $lightBlue;
+        overflow: hidden;
+        .blue-line{
+            background-color: $lightBlue;
+            width: 15px;
+            margin: 0px 20px 0px 0px;
+            animation: slidedown 1.5s ease forwards;
+            @media screen and (max-width: 800px) {
+                width: 45px;
+                margin: 0px 30px 0px 0px;
+            }
+        }
+        .exp-wrap{
+            .job-wrapper{
+                display: flex;
+                gap: 20px;
+                &:last-of-type{
+                    padding-bottom: 25px;
+                }
+                &:first-of-type{
+                    padding-top: 25px;
+                }
+                @media screen and (max-width: 576px) {
+                    flex-wrap: wrap;
+                    margin-bottom: 30px;
+                    gap: 0px;
+                }
+                .date{
+                    min-width: 150px;
+                    &:before{
+                        content: '•'; 
+                        position: absolute;
+                        left: 11.6vw;
+                        font-size: 50px;
+                        color: $lightBlue;
+                        z-index: 9;
+                        @media screen and (max-width: 576px) {
+                            left: 10.4vw;
+                        }
+                    }
+                }
+                .description{
+
+                }
+                .logo{
+                    max-width: 200px;
+                }
+            }
+        }
+    }
+    #projects{
+        margin: 0px;
+        padding: 0px;
+        .title-text{
+            width: 100%;
+        }
+        .project{
+            // background-color: $lightBlue;
+            padding: 0px 12%;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            column-gap: 50px;
+            overflow: hidden;
+            
+            .project-info{
+                flex: 1;
+                padding: 30px 0px;
+                font-weight: 300;
+                h2{
+                
+                }
+                p{
+                    
+                }
+                .stack{
+                    display: flex;
+                    gap: 40px;
+                    @media screen and (max-width: 576px) {
+                        flex-wrap: wrap;
+                        gap: 5px;
+                    }
+                    .tech{
+                        background-color: rgba(0, 0, 0, 0.4);
+                        padding: 10px 15px;
+                        font-size: 12px;
+                    }
+                }
+                @media screen and (max-width: 800px) {
+                    flex-wrap: wrap;
+                    flex: none;
+                    width: 100%;
+                }
+            }
+            .slideup{
+                animation: slideup 2s ease forwards;
+            }
+            .screenshot{
+                flex: 1;
+                opacity: 0; /* Initially hide the images */
+                transition: opacity 0.5s ease;
+                margin-top: 30px;
+                max-height: 400px;
+                &:first-of-type{
+                    margin-top: 0px;
+                }
+                img{
+                    width: 80%;
+                    vertical-align: bottom;
+                }
+                
+            }
+        }
+    }
+    footer{
+        background-color: $black;
+        text-align: center;
+        color: white;
+        padding: 30px 0;
+        font-weight: 100;
+        font-size: 14px;
+        .double-arrow{
+            cursor: pointer;
+            width: 20px;
+        }
+        .footer-social-wrap{
+            display: flex;
+            justify-content: center;
+            column-gap: 15px;
+            margin: 20px 0px;
+            .social-icon{
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+            }
+        }
+    }
+}
+
+@keyframes slidein{
+    from{
+        width: 0px;
+    }
+    to{
+        width: 40%;
+    }
+}
+@keyframes slideinmobile{
+    from{
+        width: 0px;
+    }
+    to{
+        width: 100%;
+    }
+}
+@keyframes slideout{
+    from{
+        width: 40%;
+    }
+    to{
+        width: 0px;
+    }
+}
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes slideup{
+    from{
+        transform: translateY(100%);
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes slidedown{
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
