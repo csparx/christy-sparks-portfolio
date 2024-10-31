@@ -226,9 +226,10 @@ body #troy {
   color: white;
 }
 body #skills {
-  border-top: 3px solid #1ABCFE;
-  border-bottom: 3px solid #1ABCFE;
+  /* border-top: 3px solid #1ABCFE;
+  border-bottom: 3px solid #1ABCFE; */
   padding-bottom: 30px;
+  background: rgb(242, 242, 242)
 }
 body #skills .skills-wrapper {
   display: flex;
@@ -237,6 +238,14 @@ body #skills .skills-wrapper {
   text-align: center;
   align-items: flex-end;
   justify-content: center;
+  border-bottom: 3px solid #1ABCFE;
+  padding: 20px 0px;
+}
+body #skills .skills-wrapper:last-child {
+  border-bottom: none; /* Remove the border from the last child */
+}
+#skills h2 {
+  text-align: center;
 }
 body #skills .skills-wrapper .skill {
   flex: 1;
@@ -246,6 +255,7 @@ body #experience {
   flex-wrap: no-wrap;
   position: relative;
   min-height: 100%;
+  border-top: 3px solid #1ABCFE;
   border-bottom: 3px solid #1ABCFE;
   overflow: hidden;
 }
